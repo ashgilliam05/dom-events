@@ -1,0 +1,152 @@
+The DOM is document.  It is the screen you see in the browser.
+document is an object, though it looks like HTML.
+You can Change, Add, Delete document elements.
+
+Ex -
+document.write("Hello!");
+//Returns "Hello!"
+
+The document parent object is window.  window has a ton of properties like
+alert, document etc.
+
+Ex -
+window.alert("Look at me!");
+//Returns alert "Look at me!"
+
+
+DOM Selectors - use to select different elements to manipulate.
+--------------
+getElementsByTagName
+Ex -
+Returns the document element tag given.
+document.getElementsByTagName("h1");
+// Return [h1]
+
+getElementsByClassName
+Ex -
+Returns the document element of class given.
+document.getElementsByClassName("second");
+//Returns [p.second]
+
+To return as an array -
+document.getElementByClassName("second")[0];
+//Returns <p class = "second">No excuses</p>
+
+getElementById
+Ex -
+Returns the full element by ID given.  You can only have one ID.
+document.getElementById("first");
+//Returns <p id = "first">Get it done today</p>
+
+
+
+querySelector
+Ex -
+Returns first selector given it finds.  Can use with CSS selectors.
+document.querySelector("h1");
+//Returns <h1>Shopping List</h1>
+
+querySelectorAll
+Ex -
+Returns all selectors given.
+document.querySelectorAll("li");
+//Returns [li, li, li, li, li, li]
+
+document.querySelectorAll("li, h1");
+//Returns [h1, li, li, li, li, li, li]
+
+
+
+
+getAttribute
+Ex -
+Get attribute of selection.  You have to select an element to get it's attribute.
+document.querySelector("li").getAttribute("random");
+//Returns "23"
+
+OR store querySelector in variable:
+
+var qryTest = document.querySelector("li")
+qryTest.getAttribute("random");
+//Returns "23"
+
+setAttribute
+Ex -
+Set attribute of selection.
+document.querySelector("li").setAttribute("random", "1000"); // Changes value of attribute random to 1000.
+//Use document.querySelector("li"); to return.
+//Returns <li random ="1000"Notebook</li>
+
+
+
+##Changing Styles
+style.{property} //ok
+
+document.querySelector("h1").style;
+//Returns all CSS styles applied to <h1> elements.
+document.querySelector("h1").style.background = "yellow";
+//This will change the background of the "h1" element.
+
+//NOTE: You don't want to use this.  It is similar to doing in-line styling.
+
+className //best
+Ex - Apply CSS class styles to elements.
+//Create a variable first so we don't have to retype...
+var h1 = document.querySelector("h1");
+//h1 now contains <h1>Shopping List</h1>
+h1.className = "coolTitle";
+// This applies the CSS class coolTitle to the h1 element.
+
+classList //best
+Ex -
+document.querySelector("li").classList; //selects first li only..
+//Returns element classes.
+
+classList.add
+Ex -
+document.querySelector("li").classList.add("coolTitle");
+//Adds CSS class coolTitle to class list of element li.
+
+classList.remove
+Ex -
+document.querySelector("li").classList.remove("coolTitle");
+//Removes CSS class coolTitle to class list of element li.
+
+classList.toggle
+Ex -
+document.querySelector("li").classList.toggle("done");
+//Toggles CSS done class on element li.
+
+
+
+##Bonus
+innerHTML //DANGEROUS
+Ex -
+document.querySelector("h1").innerHTML = "<strong> !!!!!"
+//Changes inner h1 element value to !!!!! with a <strong> CSS style.
+//It would look like this:
+//<h1><strong>!!!!!</strong></h1>
+
+parentElement
+Ex -
+document.querySelectorAll("li")[1];
+//Returns <li>Jello</li>
+document.querySelectorAll("li")[1].parentElement;
+//Returns <ul>...</ul> parent.
+document.querySelectorAll("li")[1].parentElement.parentElement;
+//Returns <body>...</body>
+//since it is a parent parent of the <li>.
+
+children
+Ex -
+document.querySelectorAll("li")[1].parentElement.children;
+//Returns [h1, p#first, .second, ul, first: p#first]
+//these are the children of the <body>.
+
+
+##It is important to CACHE selectors in variables
+//MEANING: put things in vars!
+//DO THIS:
+// var h1 = document.querySelector("h1");
+//NOT THIS:
+// document.querySelector("h1");
